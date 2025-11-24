@@ -1,29 +1,8 @@
-import sys
+
 import csv
 
-#Open data files
-def open_CO2data():
-    try:
-        CO2List = []                                                  #create empty list
-        with open('CO2 DATA.csv', mode='r', newline='') as CO2DATA:   #open CO2 Data
-
-            for row1 in CO2DATA:                                    #go through each row and append to CO2 List as a sublist
-                 CO2List.append([row1])
-            return CO2List
-    except:
-        print("Error: Could not retrieve CO2 data")
-
-def open_OZONEdata():
-    try:
-        OZONEList = []                                                     #create empty list
-        with open('OZONE DATA.csv', mode='r', newline='') as OZONEDATA:          #open ozone data
 
 
-            for row2 in OZONEDATA:                                   #go through each row and append to Ozone List as a sublist
-               OZONEList.append([row2])
-            return OZONEList
-    except:
-        print("Error: Could not retrieve OZONE data")
 
 
 
@@ -38,6 +17,39 @@ def Find_Input():
             words = lines[idx][0].split(" ")      #remove additional spaces and create each word into a keyword in a list
             prompt += words                       #add to prompt list
         return prompt
+
+
+
+#Open Data Files
+
+def PM_DataReport():               #Returns PM Dataset as a large list with sublists containing each element
+    try:
+        with open('PM10 DATA.csv', 'r') as f:
+            PMreader = csv.reader(f)
+            return [row for row in PMreader]
+    except:
+        print("Error: Could not retrieve Particulate Matter data")
+
+
+
+def OZONE_DataReport():               #Returns OZONE Dataset as a large list with sublists containing each element
+    try:
+        with open('OZONE DATA.csv', 'r') as f:
+            OZONEreader = csv.reader(f)
+            return [row for row in OZONEreader]
+    except:
+        print("Error: Could not retrieve Ozone data")
+
+
+def CO2_DataReport():               #Returns CO2 Dataset as a large list with sublists containing each element
+    try:
+        with open('CO2 DATA.csv', 'r') as f:
+            CO2reader = csv.reader(f)
+            return [row for row in CO2reader]
+    except:
+        print("Error: Could not retrieve Carbon Monoxide data")
+
+
 
 
 

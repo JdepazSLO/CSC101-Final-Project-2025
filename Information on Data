@@ -9,6 +9,7 @@ For example, if an air quality monitoring station has two ozone monitors,
 the first one might be assigned POC 1, and the second POC 2.
 
 (PPM) refers to (parts per million). 1 ppm is practically equivalent to 1 mg/L
+Ug/m3 refers to micrograms per cubic meter.
 
 (AQI VALUE) refers to the level of air quality, scaled 1-500.
 Good (0-50)
