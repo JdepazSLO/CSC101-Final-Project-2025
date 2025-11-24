@@ -1,0 +1,19 @@
+The data is listed by the following categories:
+"Date","Source","Site ID","POC","Daily Max 8-hour CO Concentration",
+"Units","Daily AQI Value","Local Site Name","Daily Obs Count","Percent Complete",
+"AQS Parameter Code","AQS Parameter Description","Method Code","CBSA Code","CBSA Name",
+"State FIPS Code","State","County FIPS Code","County","Site Latitude","Site Longitude"
+
+(POC) refers to (Parameter Occurrence Code). This is a specific air monitor at a single location.
+For example, if an air quality monitoring station has two ozone monitors,
+the first one might be assigned POC 1, and the second POC 2.
+
+(PPM) refers to (parts per million). 1 ppm is practically equivalent to 1 mg/L
+
+(AQI VALUE) refers to the level of air quality, scaled 1-500.
+Good (0-50)
+Moderate (51-100)
+Unhealthy for Sensitive Groups (101-150)
+Unhealthy (151-200)
+Very Unhealthy (201-300)
+Hazardous (301-500)
