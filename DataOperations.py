@@ -8,7 +8,7 @@ import csv
 
 
 
-#Input: Works by taking input text file and converting each word into its own element in a list. Find keywords through list and perform methods
+ #Input: Works by taking input text file and converting each word into its own element in a list. Find keywords through list and perform methods
 def Find_Input():
     with open("Input", 'r') as f:    # Open Input File
         lines = [[x.rstrip('\n')] for x in f]   #remove lines from input file
