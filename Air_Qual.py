@@ -1,3 +1,4 @@
+#air qual
 import DataFinder
 class find_pollution:
     def __init__(self, Ozone, PM10, CO2, AQI):
