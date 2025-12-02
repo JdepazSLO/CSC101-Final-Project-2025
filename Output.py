@@ -15,8 +15,8 @@ def output(ans_pm, ans_oz, ans_co2, mp, mo, mc):  #which pollution needs to be a
     dic_output = {mp : [mp, ans_pm,"Particulate Matter", "\nFossil fuel use, biomass burning, and construction are main causes of PM pollution. \nChoosing environment-healthy methods of transportation, reducing individual smoke emissions, and improving the cleanliness of construction sites may help."] ,
                   mo : [mo, ans_oz,"Ozone", "\nVehicle emissions, Industrial processes, and chemical solvents are main causes of Ozone pollution. \nPromoting Public transportation, implementing or advocating for stricter emission controls and cleaner technologies, and using eco friendly products may help."],
                   mc : [mc, ans_co2,"Carbon Dioxide", "\nFossil Fuel use, Deforestation, and Industrial Processes are main causes of CO2 pollution. \nSwitching to renewable energy sources, planting trees and advocating for forest protection, and improving energy efficiency within industrial processes may help"]}
-    highestcount = max(mp, mo, mc)
-    if dic_output[highestcount][0] <= 50:
+    highestcount = max(mp, mo, mc)  #finds the absolute biggest AQI
+    if dic_output[highestcount][0] <= 50:   #AQI indicators
         print (dic_ans["safe"])
         print ("Highest AQI: {} of {} (Great!)".format(dic_output[highestcount][2], dic_output[highestcount][0]))
     if dic_output[highestcount][0] > 50 and dic_output[highestcount][0] <= 100:

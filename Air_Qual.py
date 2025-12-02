@@ -9,9 +9,9 @@ class find_pollution:
     def __repr__(self):
         return 'Ozone: {} , PM10: {} , CO2: {}, Total AQI Average: {} '.format(self.Ozone, self.PM10, self.CO2, self.AQI)
 
-def air_qual(Location):             #sorry for the long code you can make it better if you want
-    PMaccumulator = 0               #but this creates a new class object of find_pollution and returns
-    PMAirQuality = 0                 #the data on Ozone, PM10, CO2, and a total AQI of a specified location
+def air_qual(Location):       #creates a new class object of find_pollution and returns the data on Ozone, PM10, CO2,
+    PMaccumulator = 0         #and a total AQI of a specified location
+    PMAirQuality = 0
     AirQuality = find_pollution(0,0,0,0)
     for x in DataFinder.PM_DataReport():
         if Location in x:
