@@ -31,9 +31,9 @@ def get_sites(ls1,ls2,ls3):  #get list of unique local-sites to check for in pro
 
 
 def fil(prompts, pm, oz,co2):   #finds avg, filers by counties, filters by local sites, and filters by month
-   n_pm = []    #new lists to filter each pollutant
-   n_oz = []
-   n_co2 = []
+   n_pm = pm    #new lists to filter each pollutant
+   n_oz = oz
+   n_co2 = co2
    mp = 0   #most: used to track the highest possible AQI (finds the highest pollutant later)
    mo = 0   #most oz
    mc = 0   #most co2
@@ -60,73 +60,49 @@ def fil(prompts, pm, oz,co2):   #finds avg, filers by counties, filters by local
                         print("\n Particulate Matter is the largest avg contributor of pollution in the site\nFossil Fuel use, Deforestation, and Industrial Processes are main causes of CO2 pollution. \nSwitching to renewable energy sources, planting trees and advocating for forest protection, and improving energy efficiency within industrial processes may help.\n\n-----------------------------------------------------------\n")
 
        if prompt in counties:   #county filter
-           for p in pm:
-               if p[18] == prompt and p not in n_pm:
-                   n_pm.append(p)
-                   if int(p[6]) > mp:
-                       mp = int(p[6])
-           for o in oz:
-               if o[18] == prompt and o not in n_oz:
-                   n_oz.append(o)
-                   if int(o[6]) > mo:
-                       mo = int(o[6])
-           for c in co2:
-               if c[18] == prompt and c not in n_co2:
-                   n_co2.append(c)
-                   if int(c[6]) > mc:
-                       mc = int(c[6])
+           n_pm = [p for p in n_pm if p[18] == prompt]
+           n_oz = [o for o in n_oz if o[18] == prompt]
+           n_co2 = [c for c in n_co2 if c[18] == prompt]
        elif prompt in sites:    #site filter
-           for p in pm:
-               if p[7] == prompt and p not in n_pm:
-                   n_pm.append(p)
-                   if int(p[6]) > mp:
-                       mp = int(p[6])
-           for o in oz:
-               if o[7] == prompt and o not in n_oz:
-                   n_oz.append(o)
-                   if int(o[6]) > mo:
-                       mo = int(o[6])
-           for c in co2:
-               if c[7] == prompt and c not in n_co2:
-                   n_co2.append(c)
-                   if int(c[6]) > mc:
-                       mc = int(c[6])
+           n_pm = [p for p in n_pm if p[7] == prompt]
+           n_oz = [o for o in n_oz if o[7] == prompt]
+           n_co2 = [c for c in n_co2 if c[7] == prompt]
        elif str(prompt) in ["01","02","03","04","05","06","07","08","09","10","11","12"]:   #month filter
-           for p in pm:
-               if p[0].split("/")[0] == str(prompt) and p not in n_pm:
-                   n_pm.append(p)
-                   if int(p[6]) > mp:
-                       mp = int(p[6])
-           for o in oz:
-               if o[0].split("/")[0] == str(prompt) and o not in n_oz:
-                   n_oz.append(o)
-                   if int(o[6]) > mo:
-                       mo = int(o[6])
-           for c in co2:
-               if c[0].split("/")[0] == str(prompt) and c not in n_co2:
-                   n_co2.append(c)
-                   if int(c[6]) > mc:
-                       mc = int(c[6])
-
+           n_pm = [p for p in n_pm if p[0].split("/")[0] == str(prompt)]
+           n_oz = [o for o in n_oz if o[0].split("/")[0] == str(prompt)]
+           n_co2 = [c for c in n_co2 if c[0].split("/")[0] == str(prompt)]
+       mp = max(int(p[6]) for p in n_pm[1:])
+       mo = max(int(o[6]) for o in n_oz[1:])
+       mc = max(int(c[6]) for c in n_co2[1:])
    most_pol(n_pm, n_oz, n_co2, mp, mo, mc)  #call to find highest pollutant
 
 
 def most_pol(pm, oz, co2, mp, mo, mc):    #finds highest pollutant
-   ans_pm = []  #ans: filtered lists containing the data with the highest AQI
-   ans_oz = []
-   ans_co2 = []
-   mp = mp  #imported from last function
-   mo = mo
-   mc = mc
-   for i in range(len(pm)):
-       if int(pm[i][6]) == mp and pm[i][7] not in ans_pm:
-           ans_pm.append(pm[i][7])
+   highest = max(mp,mo,mc)
+   thresh = [
+       range(1,50),
+       range(51,100),
+       range(101,150),
+       range(151,200),
+       range(201,300),
+       range(301,500),
+   ]
+   hold = (0,0)
+   if highest in thresh[0]:
+       hold = thresh[0]
+   elif highest in thresh[1]:
+       hold = thresh[1]
+   elif highest in thresh[2]:
+       hold = thresh[2]
+   elif highest in thresh[3]:
+       hold = thresh[3]
+   elif highest in thresh[4]:
+       hold = thresh[4]
+   elif highest in thresh[5]:
+       hold = thresh[5]
 
-   for i in range(len(oz)):
-       if int(oz[i][6]) == mo and oz[i][7] not in ans_oz:
-           ans_oz.append(oz[i][7])
+   ans_pm = [p[7] for p in pm if int(p[6]) in hold]
+   ans_oz = [o[7] for o in oz if int(o[6]) in hold]
+   ans_co2 = [c[7] for c in co2 if int(c[6]) in hold]
 
-   for i in range(len(co2)):
-       if int(co2[i][6]) == mc and co2[i][7] not in ans_co2:
-           ans_co2.append(co2[i][7])
-   output(ans_pm, ans_oz, ans_co2,mp, mo, mc)   #call for final print
+   output(ans_pm, ans_oz, ans_co2,mp,mo,mc)   #call for final print
