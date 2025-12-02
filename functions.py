@@ -30,7 +30,7 @@ def get_sites(ls1,ls2,ls3):  #get list of unique local-sites to check for prompt
 
 
 #prompt example:
-#
+##
 def fil(prompts, pm, oz,co2):   #month, local site, find avg
    n_pm = []
    n_oz = []
