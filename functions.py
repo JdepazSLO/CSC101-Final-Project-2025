@@ -3,26 +3,26 @@ from Output import *
 
 def get_counties(ls1,ls2,ls3):  #get list of unique counties to check for prompt
    ans = []
-   for i in range(len(ls1)):
+   for i in range(1,len(ls1)):
        if ls1[i][18] not in ans:
            ans.append(ls1[i][18])
-   for i in range(len(ls2)):
+   for i in range(1,len(ls2)):
        if ls2[i][18] not in ans:
            ans.append(ls2[i][18])
-   for i in range(len(ls3)):
+   for i in range(1,len(ls3)):
        if ls3[i][18] not in ans:
            ans.append(ls3[i][18])
    return ans
 
 def get_sites(ls1,ls2,ls3):  #get list of unique local-sites to check for prompt
    ans = []
-   for i in range(len(ls1)):
+   for i in range(1,len(ls1)):
        if ls1[i][7] not in ans:
            ans.append(ls1[i][7])
-   for i in range(len(ls2)):
+   for i in range(1,len(ls2)):
        if ls2[i][7] not in ans:
            ans.append(ls2[i][7])
-   for i in range(len(ls3)):
+   for i in range(1,len(ls3)):
        if ls3[i][7] not in ans:
            ans.append(ls3[i][7])
    return ans
@@ -100,22 +100,18 @@ def most_pol(pm,oz,co2,mp, mo, mc):    #how many times each pollutant is the hig
    ans_pm = []  #if count_pm is greatest, return the highest pm objects
    ans_oz = []
    ans_co2 = []
-   count_pm = 0
-   count_oz = 0
-   count_co2 = 0
    mp = mp
    mo = mo
    mc = mc
    for i in range(len(pm)):
-       if pm[i][6] == mp and pm[i] not in ans_pm:
-           ans_pm.append(pm[i])
-           count_pm += 1
+       if pm[i][6] == mp and pm[i][7] not in ans_pm:
+           ans_pm.append(pm[i][7])
+
    for i in range(len(oz)):
-       if oz[i][6] == mo and oz[i] not in ans_oz:
-           ans_oz.append(oz[i])
-           count_oz += 1
+       if oz[i][6] == mo and oz[i][7] not in ans_oz:
+           ans_oz.append(oz[i][7])
+
    for i in range(len(co2)):
-       if co2[i][6] == mc and co2[i] not in ans_co2:
-           ans_co2.append(co2[i])
-           count_co2 += 1
-   output(ans_pm, ans_oz, ans_co2, count_pm, count_oz, count_co2, mp, mo, mc)
+       if co2[i][6] == mc and co2[i][7] not in ans_co2:
+           ans_co2.append(co2[i][7])
+   output(ans_pm, ans_oz, ans_co2,mp, mo, mc)
