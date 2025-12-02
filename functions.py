@@ -1,4 +1,5 @@
 from Air_Qual import *
+from Output import *
 
 def get_counties(ls1,ls2,ls3):  #get list of unique counties to check for prompt
    ans = []
@@ -39,7 +40,7 @@ def fil(prompts, pm, oz,co2):   #month, local site, find avg
    for prompt in prompts:
        counties = get_counties(pm, oz, co2) #make more variables for potential filters
        sites = get_sites(pm, oz, co2)
-       if len(prompt.split(":") > 1):
+       if len(prompt.split(":")) > 1:
            if prompt[0] == "air_qual":
                print(air_qual(prompt[1]))
 
@@ -47,50 +48,50 @@ def fil(prompts, pm, oz,co2):   #month, local site, find avg
            for p in pm:
                if p[18] == prompt and p not in n_pm:
                    n_pm.append(p)
-                   if p[6] > mp:
-                       mp = p[6]
+                   if int(p[6]) > mp:
+                       mp = int(p[6])
            for o in oz:
                if o[18] == prompt and o not in n_oz:
                    n_oz.append(o)
-                   if o[6] > mo:
-                       mo = o[6]
+                   if int(o[6]) > mo:
+                       mo = int(o[6])
            for c in co2:
                if c[18] == prompt and c not in n_co2:
                    n_co2.append(c)
-                   if c[6] > mc:
-                       mc = c[6]
+                   if int(c[6]) > mc:
+                       mc = int(c[6])
        elif prompt in sites:
            for p in pm:
                if p[7] == prompt and p not in n_pm:
                    n_pm.append(p)
-                   if p[6] > mp:
-                       mp = p[6]
+                   if int(p[6]) > mp:
+                       mp = int(p[6])
            for o in oz:
                if o[7] == prompt and o not in n_oz:
                    n_oz.append(o)
-                   if o[6] > mo:
-                       mo = o[6]
+                   if int(o[6]) > mo:
+                       mo = int(o[6])
            for c in co2:
                if c[7] == prompt and c not in n_co2:
                    n_co2.append(c)
-                   if c[6] > mc:
-                       mc = c[6]
+                   if int(c[6]) > mc:
+                       mc = int(c[6])
        elif str(prompt) in ["01","02","03","04","05","06","07","08","09","10","11","12"]:
            for p in pm:
                if p[0].split("/")[0] == str(prompt) and p not in n_pm:
                    n_pm.append(p)
                    if p[6] > mp:
-                       mp = p[6]
+                       mp = int(p[6])
            for o in oz:
                if o[0].split("/")[0] == str(prompt) and o not in n_oz:
                    n_oz.append(o)
-                   if o[6] > mo:
-                       mo = o[6]
+                   if int(o[6]) > mo:
+                       mo = int(o[6])
            for c in co2:
                if c[0].split("/")[0] == str(prompt) and c not in n_co2:
                    n_co2.append(c)
-                   if c[6] > mc:
-                       mc = c[6]
+                   if int(c[6]) > mc:
+                       mc = int(c[6])
 
    most_pol(n_pm, n_oz, n_co2, mp, mo, mc)
 
