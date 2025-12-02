@@ -41,8 +41,9 @@ def fil(prompts, pm, oz,co2):   #month, local site, find avg
        counties = get_counties(pm, oz, co2) #make more variables for potential filters
        sites = get_sites(pm, oz, co2)
        if len(prompt.split(":")) > 1:
-           if prompt[0] == "air_qual":
-               print(air_qual(prompt[1]))
+           if prompt.split(":")[0] == "air_qual":
+               print(air_qual(prompt.split(":")[1]))
+               exit(1)
 
        if prompt in counties:
            for p in pm:
@@ -80,7 +81,7 @@ def fil(prompts, pm, oz,co2):   #month, local site, find avg
            for p in pm:
                if p[0].split("/")[0] == str(prompt) and p not in n_pm:
                    n_pm.append(p)
-                   if p[6] > mp:
+                   if int(p[6]) > mp:
                        mp = int(p[6])
            for o in oz:
                if o[0].split("/")[0] == str(prompt) and o not in n_oz:
@@ -104,14 +105,14 @@ def most_pol(pm,oz,co2,mp, mo, mc):    #how many times each pollutant is the hig
    mo = mo
    mc = mc
    for i in range(len(pm)):
-       if pm[i][6] == mp and pm[i][7] not in ans_pm:
+       if int(pm[i][6]) == mp and pm[i][7] not in ans_pm:
            ans_pm.append(pm[i][7])
 
    for i in range(len(oz)):
-       if oz[i][6] == mo and oz[i][7] not in ans_oz:
+       if int(oz[i][6]) == mo and oz[i][7] not in ans_oz:
            ans_oz.append(oz[i][7])
 
    for i in range(len(co2)):
-       if co2[i][6] == mc and co2[i][7] not in ans_co2:
+       if int(co2[i][6]) == mc and co2[i][7] not in ans_co2:
            ans_co2.append(co2[i][7])
    output(ans_pm, ans_oz, ans_co2,mp, mo, mc)
