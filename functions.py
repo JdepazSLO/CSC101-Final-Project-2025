@@ -96,20 +96,25 @@ def fil(prompts, pm, oz,co2):   #month, local site, find avg
 
 
 def most_pol(pm,oz,co2,mp, mo, mc):    #how many times each pollutant is the highest pollution
-   ans = []
+   ans_pm = []  #if count_pm is greatest, return the highest pm objects
+   ans_oz = []
+   ans_co2 = []
    count_pm = 0
    count_oz = 0
    count_co2 = 0
+   mp = mp
+   mo = mo
+   mc = mc
    for i in range(len(pm)):
-       if pm[i][6] == mp and pm[i] not in ans:
-           ans.append(pm[i])
+       if pm[i][6] == mp and pm[i] not in ans_pm:
+           ans_pm.append(pm[i])
            count_pm += 1
    for i in range(len(oz)):
-       if oz[i][6] == mo and oz[i] not in ans:
-           ans.append(oz[i])
+       if oz[i][6] == mo and oz[i] not in ans_oz:
+           ans_oz.append(oz[i])
            count_oz += 1
    for i in range(len(co2)):
-       if co2[i][6] == mc and co2[i] not in ans:
-           ans.append(co2[i])
+       if co2[i][6] == mc and co2[i] not in ans_co2:
+           ans_co2.append(co2[i])
            count_co2 += 1
-   output(ans,count_pm,count_oz,count_co2)
+   output(ans_pm, ans_oz, ans_co2, count_pm, count_oz, count_co2, mp, mo, mc)
