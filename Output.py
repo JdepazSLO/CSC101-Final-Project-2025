@@ -2,11 +2,11 @@
 dic_ans = {
 
     "safe" : "All of the air quality data returned from given prompts poses no health issues :)",
-    "moderate" : "Worst local AQI is an {} level of {} (Moderate). \nAir Quality at this level is generally acceptable. However, there may be a risk for some people who are sensitive to air pollution. \nThere are {} local sites with this air quality:",
-    "Unhealthy for Sensitive Groups" : "Worst local AQI is an {} level of {} (Unhealthy for Sensitive Groups). \nMembers of sensitive groups may experience health effects. The general public is less likely to be affected. \nThere are {} local sites with this air quality:",
-    "Unhealthy" : "Worst local AQI is an {} level of {} (Unhealthy). \nSome members of the general public may experience health affects. Members of sensitive groups may experience serious health effects. \nThere are {} local sites with this air quality:",
-    "Very Unhealthy" : "Worst local AQI is an {} level of {} (Very Unhealthy). \nAir Quality of this level is a public health risk for the entirety of the general public \nThere are {} local sites with this air quality:",
-    "Hazardous" : "Worst local AQI is an {} level of {} (Hazardous). \nAir Quality of this level poses serious Hazard. These are considered emergency conditions and anyone who is exposed is likely to be affected. \nThere are {} local sites with this air quality:"
+    "moderate" : "Worst local AQI:  {} level of {} (Moderate). \nAir Quality at this level is generally acceptable. However, there may be a risk for some people who are sensitive to air pollution. \nThere are {} local sites with this air quality:",
+    "Unhealthy for Sensitive Groups" : "Worst local AQI: {} level of {} (Unhealthy for Sensitive Groups). \nMembers of sensitive groups may experience health effects. The general public is less likely to be affected. \nThere are {} local sites with this air quality:",
+    "Unhealthy" : "Worst local AQI:  {} level of {} (Unhealthy). \nSome members of the general public may experience health affects. Members of sensitive groups may experience serious health effects. \nThere are {} local sites with this air quality:",
+    "Very Unhealthy" : "Worst local AQI:  {} level of {} (Very Unhealthy). \nAir Quality of this level is a public health risk for the entirety of the general public \nThere are {} local sites with this air quality:",
+    "Hazardous" : "Worst local AQI:  {} level of {} (Hazardous). \nAir Quality of this level poses serious Hazard. These are considered emergency conditions and anyone who is exposed is likely to be affected. \nThere are {} local sites with this air quality:"
 }
 def output(ans_pm, ans_oz, ans_co2, mp, mo, mc):  #which pollution needs to be addressed? (used for final print suggestion)
 #mp, mo, mc -> highest aqi of each pollutant
@@ -18,7 +18,7 @@ def output(ans_pm, ans_oz, ans_co2, mp, mo, mc):  #which pollution needs to be a
     highestcount = max(mp, mo, mc)
     if dic_output[highestcount][0] <= 50:
         print (dic_ans["safe"])
-        print ("Highest AQI is {} of {} (Great!)".format(dic_output[highestcount][2], dic_output[highestcount][0]))
+        print ("Highest AQI: {} of {} (Great!)".format(dic_output[highestcount][2], dic_output[highestcount][0]))
     if dic_output[highestcount][0] > 50 and dic_output[highestcount][0] <= 100:
         print (dic_ans["moderate"].format(dic_output[highestcount][2], dic_output[highestcount][0],highestcount))
         print (dic_output[highestcount][1])
