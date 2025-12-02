@@ -1,3 +1,4 @@
+import Air_Qual
 from Air_Qual import *
 from Output import *
 
@@ -42,8 +43,24 @@ def fil(prompts, pm, oz,co2):   #month, local site, find avg
        sites = get_sites(pm, oz, co2)
        if len(prompt.split(":")) > 1:
            if prompt.split(":")[0] == "air_qual":
-               print(air_qual(prompt.split(":")[1]))
-               exit(1)
+               if prompt.split(":")[1] in counties:
+                    print("County: {} \n{}".format(prompt.split(":")[1], air_qual(prompt.split(":")[1])))
+                    if Air_Qual.air_qual(prompt.split(":")[1]).CO2 > Air_Qual.air_qual(prompt.split(":")[1]).Ozone and Air_Qual.air_qual(prompt.split(":")[1]).CO2 > Air_Qual.air_qual(prompt.split(":")[1]).PM10:
+                        print("\nCO2 is the largest contributor of pollution in this county. \nFossil Fuel use, Deforestation, and Industrial Processes are main causes of CO2 pollution. \nSwitching to renewable energy sources, planting trees and advocating for forest protection, and improving energy efficiency within industrial processes may help")
+                    elif Air_Qual.air_qual(prompt.split(":")[1]).Ozone > Air_Qual.air_qual(prompt.split(":")[1]).CO2 and Air_Qual.air_qual(prompt.split(":")[1]).Ozone > Air_Qual.air_qual(prompt.split(":")[1]).PM10:
+                        print("\nOzone is the largest contributor of pollution in this county. \nVehicle emissions, Industrial processes, and chemical solvents are main causes of Ozone pollution. \nPromoting Public transportation, implementing or advocating for stricter emission controls and cleaner technologies, and using eco friendly products may help.")
+                    elif Air_Qual.air_qual(prompt.split(":")[1]).PM10 > Air_Qual.air_qual(prompt.split(":")[1]).CO2 and Air_Qual.air_qual(prompt.split(":")[1]).PM10 > Air_Qual.air_qual(prompt.split(":")[1]).Ozone:
+                        print("\n Particulate Matter is the largest contributor of pollution in the county\nFossil Fuel use, Deforestation, and Industrial Processes are main causes of CO2 pollution. \nSwitching to renewable energy sources, planting trees and advocating for forest protection, and improving energy efficiency within industrial processes may help")
+                    exit(1)
+               elif prompt.split(":")[1] in sites:
+                    print("Site: {} \n{}".format(prompt.split(":")[1], air_qual(prompt.split(":")[1])))
+                    if Air_Qual.air_qual(prompt.split(":")[1]).CO2 > Air_Qual.air_qual(prompt.split(":")[1]).Ozone and Air_Qual.air_qual(prompt.split(":")[1]).CO2 > Air_Qual.air_qual(prompt.split(":")[1]).PM10:
+                        print("\nCO2 is the largest contributor of pollution in this site. \nFossil Fuel use, Deforestation, and Industrial Processes are main causes of CO2 pollution. \nSwitching to renewable energy sources, planting trees and advocating for forest protection, and improving energy efficiency within industrial processes may help")
+                    elif Air_Qual.air_qual(prompt.split(":")[1]).Ozone > Air_Qual.air_qual(prompt.split(":")[1]).CO2 and Air_Qual.air_qual(prompt.split(":")[1]).Ozone > Air_Qual.air_qual(prompt.split(":")[1]).PM10:
+                        print("\nOzone is the largest contributor of pollution in this site. \nVehicle emissions, Industrial processes, and chemical solvents are main causes of Ozone pollution. \nPromoting Public transportation, implementing or advocating for stricter emission controls and cleaner technologies, and using eco friendly products may help.")
+                    elif Air_Qual.air_qual(prompt.split(":")[1]).PM10 > Air_Qual.air_qual(prompt.split(":")[1]).CO2 and Air_Qual.air_qual(prompt.split(":")[1]).PM10 > Air_Qual.air_qual(prompt.split(":")[1]).Ozone:
+                        print("\n Particulate Matter is the largest contributor of pollution in the site\nFossil Fuel use, Deforestation, and Industrial Processes are main causes of CO2 pollution. \nSwitching to renewable energy sources, planting trees and advocating for forest protection, and improving energy efficiency within industrial processes may help")
+                    exit(1)
 
        if prompt in counties:
            for p in pm:
