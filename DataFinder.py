@@ -12,12 +12,9 @@ import csv
 # Find keywords through list and perform methods
 def Find_Input():
     with open("Input", 'r') as f:    # Open Input File
-        lines = [[x.rstrip('\n')] for x in f]   #remove lines from input file
-        prompt = []                              #create prompt list
-        for idx in range(len(lines)):
-            words = lines[idx][0].split(" ")      #remove additional spaces and create each word into a keyword in a list
-            prompt += words                       #add to prompt list
-        return prompt
+        lines = [x.rstrip('\n') for x in f]   #remove lines from input file
+        return lines
+
 
 
 
