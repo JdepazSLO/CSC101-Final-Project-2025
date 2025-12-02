@@ -18,7 +18,7 @@ def air_qual(Location):             #sorry for the long code you can make it bet
             PMAirQuality += int(x[6])
             PMaccumulator += 1
     try: AirQuality.PM10 = PMAirQuality / PMaccumulator
-    except ZeroDivisionError: AirQuality.PM10 = "No Data Found"
+    except ZeroDivisionError: AirQuality.PM10 = 0
     Ozoneaccumulator = 0
     OzoneAirQuality = 0
     for y in DataFinder.OZONE_DataReport():
@@ -26,7 +26,7 @@ def air_qual(Location):             #sorry for the long code you can make it bet
             OzoneAirQuality += int(y[6])
             Ozoneaccumulator += 1
     try: AirQuality.Ozone = OzoneAirQuality / Ozoneaccumulator
-    except ZeroDivisionError: AirQuality.Ozone = "No Data Found"
+    except ZeroDivisionError: AirQuality.Ozone = 0
     CO2accumulator = 0
     CO2AirQuality = 0
     for z in DataFinder.CO2_DataReport():
@@ -34,7 +34,7 @@ def air_qual(Location):             #sorry for the long code you can make it bet
             CO2AirQuality += int(z[6])
             CO2accumulator += 1
     try: AirQuality.CO2 = CO2AirQuality / CO2accumulator
-    except ZeroDivisionError: AirQuality.CO2 = "No Data Found"
+    except ZeroDivisionError: AirQuality.CO2 = 0
     try: AirQuality.AQI = (CO2AirQuality+OzoneAirQuality+PMAirQuality)/(CO2accumulator+Ozoneaccumulator+PMaccumulator)
     except ZeroDivisionError: return "No Data for Provided Input"
 
