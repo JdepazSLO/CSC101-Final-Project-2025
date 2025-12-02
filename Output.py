@@ -18,7 +18,7 @@ def output(ans_pm, ans_oz, ans_co2, count_pm, count_oz, count_co2, mp, mo, mc): 
     highestcount = max(count_pm, count_oz, count_co2)
     if dic_output[highestcount][0] <= 50:
         print (dic_ans["safe"])
-        print ("Highest AQI is {} (Great!)".format(dic_output[highestcount][0]))
+        print ("Highest AQI is and {} level of {} (Great!)".format(dic_output[highestcount][2], dic_output[highestcount][0]))
     if dic_output[highestcount][0] > 50 and dic_output[highestcount][0] <= 100:
         print (dic_ans["moderate"].format(dic_output[highestcount][2], dic_output[highestcount][0],highestcount))
         print ("\n"+dic_output[highestcount][1])
