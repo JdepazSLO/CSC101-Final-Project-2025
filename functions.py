@@ -77,9 +77,16 @@ def fil(prompt,data):   #depnending on prompt, finds avg, filers by counties, fi
 
 
 def most_pol(data):    #finds highest pollutant
-    mp = max(int(p[6]) for p in data[0][1:])
-    mo = max(int(o[6]) for o in data[1][1:])
-    mc = max(int(c[6]) for c in data[2][1:])
+    mp = 0
+    mo = 0
+    mc = 0
+    if data[0][1:]:
+        mp = max(int(p[6]) for p in data[0][1:])
+    if data[1][1:]:
+        mo = max(int(o[6]) for o in data[1][1:])
+    if data[2][1:]:
+        mc = max(int(c[6]) for c in data[2][1:])
+
     highest = max(mp,mo,mc)
 
     thresh = [
